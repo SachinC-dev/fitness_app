@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <div class="height">
+        <p>Enter your height (in cm): </p>
+        <input type="number" name="height" id="height">
+    </div>
+    <div class="weight">
+        <p>Enter your weight (in kg): </p>
+        <input type="number" name="weight" id="weight">
+    </div>
+    <button type="submit" onclick="calcu(); healthyOrNot()">Calculate</button>
+    <div class="bmi">
+        <p>Your are BMI is <span id="bmi">__</span></p>
+        <p id="conc"></p>
+    </div>
+</body>
+</html>
+<script>
+    let bmi;
+    function calcu(){
+        let height = parseInt(document.getElementById("height").value);
+        let weight = parseInt(document.getElementById("weight").value);
+        bmi = Math.round((weight/(height/100)**2)*100) / 100;
+        document.getElementById("bmi").innerHTML = bmi;
+    }
+    function healthyOrNot(){
+        if (bmi < 18.5){
+            document.getElementById("conc").innerHTML = "You are underweight";
+        }
+        else if (bmi >=18.5 && bmi < 25){
+            document.getElementById("conc").innerHTML = "You have a healthy bodyweight";
+        }
+        else if (bmi >=25 && bmi < 30){
+            document.getElementById("conc").innerHTML = "You are overweight";
+        }
+        else{
+            document.getElementById("conc").innerHTML = "You are obese";
+        }
+    }
+</script>
